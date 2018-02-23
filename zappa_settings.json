@@ -1,0 +1,18 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "eu-west-1",
+        "profile_name": "default",
+        "project_name": "block-project-d",
+        "runtime": "python3.6",
+        "s3_bucket": "block-project-diagram-dev"
+    },
+    "production": {
+        "app_function": "app.app",
+        "aws_region": "eu-west-1",
+        "profile_name": "default",
+        "project_name": "block-project-d",
+        "runtime": "python3.6",
+        "s3_bucket": "block-project-diagram-production"
+    }
+}
