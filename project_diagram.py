@@ -4,15 +4,20 @@ import networkx as nx
 LOG = Logger()
 
 def diagram(payload):
-    data = payload['payload']
-    #LOG.console(data)
+    project_data = payload['payload']
+    #LOG.console(project_data)
     
     G = nx.DiGraph()
-    for transaction in data['transactions']:
+    for transaction in project_data['transactions']:
         connection = (transaction['country_from'],transaction['country_to'])
         G.add_edges_from([connection])
     data = convert2cytoscapeJSON(G)
-    return data
+
+    #Adding what type of transaction it is.'
+    for i,d in enumerate(data["edges"]):
+        d['data']['type'] = project_data['transactions'][i]["type"]
+    
+    return json.dumps(data)
       
 
 # this function is used to convert networkx to Cytoscape.js JSON format
@@ -37,6 +42,6 @@ def convert2cytoscapeJSON(G):
         nx["data"]["target"]=edge[1]
         final["edges"].append(nx)
 
-    return json.dumps(final)
+    return final
        
 
