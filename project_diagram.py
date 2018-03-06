@@ -16,6 +16,8 @@ def diagram(payload):
     #Adding what type of transaction it is.'
     for i,d in enumerate(data["edges"]):
         d['data']['type'] = project_data['transactions'][i]["type"]
+        d['data']['pair'] = project_data['transactions'][i]["currency_from"]+project_data['transactions'][i]["currency_to"]
+    
     
     return json.dumps(data)
       
